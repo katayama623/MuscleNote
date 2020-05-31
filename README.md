@@ -1,24 +1,23 @@
-# README
+# Muscle Note
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+体を鍛えたい人たちが知識の共有の場として利用出来る、筋トレメニューの投稿サイトです
 
-Things you may want to cover:
+### サイトテーマ
+色々な人とのトレーニング知識の共有
 
-* Ruby version
+### テーマを選んだ理由
+体を鍛えていく中で、トレーニングメニューなどの情報はインターネット上で入手することが出来ますが、ほとんどが個人で完結してしまい、他者との関わりは薄いと思います。そこで、同じ目的を持つ人達がお互いの知識や情報を交換し、自分のトレーニングに活かせる場として利用出来るサイトを作ろうと思いました。
 
-* System dependencies
+### ターゲットユーザ
+体を鍛えたい初心者の方から、ある程度年数をこなし続けた上級者まで　　
+年齢層は10〜30代を中心に
 
-* Configuration
+### 主な利用シーン
+自分の持つトレーニング知識の共有・他者がどのようなトレーニングを行なっているかの参考の場に
 
-* Database creation
+## 設計書
 
-* Database initialization
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1nwFYrMFLDgNkvcxe9Qz1ETubiiNUsWkqWn9yu5QVikI/edit?usp=sharing
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
