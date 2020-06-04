@@ -14,3 +14,6 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+//= require active_admin/base
+//= require active_admin_flat_skin
