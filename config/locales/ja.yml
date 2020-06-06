@@ -1,0 +1,18 @@
+
+ja:
+  enums:
+    post:
+      part:
+        part0: 胸
+        part1: 背中
+        part2: 肩
+        part3: 腕
+        part4: 腹筋
+        part5: 太腿
+        part6: 上半身全体
+        part7: 下半身全体
+        part8: その他
+      strong:
+        strong0: 軽め
+        strong1: 普通
+        strong2: 強め
