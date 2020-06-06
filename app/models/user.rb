@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :post_comments
   has_many :favorite
   has_many :books
+
+  attachment :profile_image
 end
