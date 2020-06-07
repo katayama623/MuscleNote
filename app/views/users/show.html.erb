@@ -1,7 +1,7 @@
 <div class="row">
   <div class='col-xs-4'>
       <div style="text-align: center;">
-        <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130") %>
+        <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %>
       </div>
         <h3 style="text-align: center;">
           <strong><%= @user.name %></strong>
