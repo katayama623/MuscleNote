@@ -18,6 +18,13 @@
   <% end %>
 <% end %>
 
+<h3>ブックマーク件数: <%= @post.books.count %></h3>
+<% if current_user.already_booked?(@post) %>
+  <%= button_to 'ブックマークを取り消す', post_books_path(@post), method: :delete %>
+<% else %>
+  <%= button_to 'ブックマーク', post_books_path(@post) %>
+<% end %>
+
 <%= link_to("編集",edit_post_path(@post.id)) %>
 <%= link_to "削除", post_path, method: :delete, data: { confirm: "削除してよろしいですか？" } %>
 <%= link_to("投降一覧へ",posts_path) %>

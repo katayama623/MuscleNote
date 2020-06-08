@@ -36,12 +36,46 @@
           </strong>
         </h3>
       </div>
+
       <% @posts.each do |post| %>
         <div class="post_index">
           <p><%= link_to post.title,post, class: "post_#{post.id}" %></p>
           <p>トレーニング内容：<%= post.body %></p>
           <p>効果部位：<%= post.part_i18n %></p>
           <p>強度：<%= post.strong_i18n %></p>
+          <% if post.favorited_by?(current_user) %>
+            <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
+              <span class="glyphicon glyphicon-heart"><%= post.favorites.count%></span>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
+              <span class="glyphicon glyphicon-heart-empty"><%= post.favorites.count %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div>
+        <h3>
+          <strong>ブックマーク</strong>
+        </h3>
+      </div>
+      <% @user.booked_posts.each do |post| %>
+        <div class="post_index">
+          <p><%= post.user.name %></p>
+          <p><%= link_to post.title,post, class: "post_#{post.id}" %></p>
+          <p>トレーニング内容：<%= post.body %></p>
+          <p>効果部位：<%= post.part_i18n %></p>
+          <p>強度：<%= post.strong_i18n %></p>
+          <% if post.favorited_by?(current_user) %>
+            <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
+              <span class="glyphicon glyphicon-heart"><%= post.favorites.count%></span>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
+              <span class="glyphicon glyphicon-heart-empty"><%= post.favorites.count %></span>
+            <% end %>
+          <% end %>
         </div>
       <% end %>
     </div>
