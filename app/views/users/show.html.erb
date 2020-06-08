@@ -1,21 +1,59 @@
 <div class="row">
-  <div class='col-xs-4'>
+  <div class="col-lg-5">
+
+    <div class="main-profile">
       <div style="text-align: center;">
         <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %>
       </div>
-        <h3 style="text-align: center;">
-          <strong><%= @user.name %></strong>
-        </h3>
+      <h3 style="text-align: center;">
+        <strong><%= @user.name %></strong>
+      </h3>
 
-    <h4 style="text-align: center; margin-top: 30px;">
-      <strong class="profile">プロフィール</strong>
-    </h4>
-    <div style="border:groove; 3px #696969; background-color: #fff;min-height: 80px;font-size: 15px;">
-      <%= @user.introduction %>
-    </div>
+      <h4 style="text-align: center; margin-top: 30px;">
+        <strong class="profile">プロフィール</strong>
+      </h4>
+      <div style="border:groove; 3px #696969; background-color: #fff;min-height: 80px;font-size: 15px;">
+        <%= @user.introduction %>
+      </div>
 
-    <div style="text-align: center;margin-top: 20px;color: blue;">
-      <%= link_to 'プロフィール編集',edit_user_path(@user), :style=>"text-decoration: none;", class: "bottom edit_user_#{@user.id} " %>
+      <% if @user.id == current_user.id %>
+      <div style="text-align: center;margin-top: 20px;color: blue;">
+        <%= link_to 'プロフィール編集',edit_user_path(@user), :style=>"text-decoration: none;", class: "bottom edit_user_#{@user.id} " %>
+      </div>
+      <% end %>
     </div>
   </div>
+
+  <div class="col-lg-6">
+    <div style="width: 100%;margin-top: 40px;">
+      <div class="user-post">
+        <%= link_to 'トレーニングを投稿する', new_post_path(@post), :style=>"text-decoration: none;", class: "bottom" %>
+      </div>
+      <div>
+        <h3>
+          <strong>
+            <%= @user.name %>の投降一覧　全<%= @user.posts.count%>件
+          </strong>
+        </h3>
+      </div>
+      <% @posts.each do |post| %>
+        <div class="post_index">
+          <p><%= link_to post.title,post, class: "post_#{post.id}" %></p>
+          <p>トレーニング内容：<%= post.body %></p>
+          <p>効果部位：<%= post.part_i18n %></p>
+          <p>強度：<%= post.strong_i18n %></p>
+          <% if post.favorited_by?(current_user) %>
+            <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
+              <span class="glyphicon glyphicon-heart"><%= post.favorites.count%></span>
+            <% end %>
+            <% else %>
+            <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
+              <span class="glyphicon glyphicon-heart-empty"><%= post.favorites.count %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>
