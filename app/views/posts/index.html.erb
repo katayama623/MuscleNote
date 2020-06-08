@@ -16,7 +16,8 @@
             <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
               <span class="glyphicon glyphicon-heart-empty"><%= post.favorites.count %></span>
             <% end %>
-          <% end %>
+        <% end %>
+        <p>コメント数<%= post.post_comments.count %></p>
 	  </div>
 	<% end %>
   </div>

@@ -25,6 +25,24 @@
   <%= button_to 'ブックマーク', post_books_path(@post) %>
 <% end %>
 
+<div class="row">
+    <ul>
+        <li class="comment-create">
+            <h3 class="text-left title">レビュー</h3>
+        </li>
+        <li id="comments_area">
+            <%= render partial: 'post_comments/index', locals: { post_comments: @post_comments } %>
+        </li>
+    </ul>
+    <hr>
+    <% if user_signed_in? %>
+        <div class="comment-create">
+            <h3 class="text-left">レビューを投稿する</h3>
+            <%= render partial: 'post_comments/form', locals: { post_comment: @post_comment, post: @post } %>
+        </div>
+    <% end %>
+</div>
+
 <%= link_to("編集",edit_post_path(@post.id)) %>
 <%= link_to "削除", post_path, method: :delete, data: { confirm: "削除してよろしいですか？" } %>
 <%= link_to("投降一覧へ",posts_path) %>
