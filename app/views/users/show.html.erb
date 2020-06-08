@@ -42,15 +42,6 @@
           <p>トレーニング内容：<%= post.body %></p>
           <p>効果部位：<%= post.part_i18n %></p>
           <p>強度：<%= post.strong_i18n %></p>
-          <% if post.favorited_by?(current_user) %>
-            <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
-              <span class="glyphicon glyphicon-heart"><%= post.favorites.count%></span>
-            <% end %>
-            <% else %>
-            <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
-              <span class="glyphicon glyphicon-heart-empty"><%= post.favorites.count %></span>
-            <% end %>
-          <% end %>
         </div>
       <% end %>
     </div>
