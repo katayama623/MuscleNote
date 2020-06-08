@@ -14,7 +14,7 @@
                     <%= post_comment.comment %>
                     <% if post_comment.user == current_user %>
                         <%= link_to post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
-                            <i class="fas fa-trash" style="color: black;"></i>
+                            削除
                         <% end %>
                     <% end %>
                 </div>
