@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :post_comments
-  has_many :favorites
-  has_many :books
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :books, dependent: :destroy
   has_many :booked_users, through: :books, source: :user
 
   enum part: [:part0, :part1, :part2, :part3, :part4, :part5, :part6, :part7, :part8]

@@ -15,4 +15,23 @@ ActiveAdmin.register Post do
   #   permitted
   # end
   permit_params :user_id, :title, :body, :strong, :part
+
+  index do
+    selectable_column
+    id_column
+    column :user
+    column :title
+    column 'いいね数' do |post|
+      post.favorites.count
+    end
+    column 'ブックマーク数' do |post|
+      post.books.count
+    end
+    column 'コメント数' do |post|
+      post.post_comments.count
+    end
+    column :created_at
+    column :updated_at
+    actions
+  end
 end
