@@ -1,15 +1,23 @@
 <h1><%= @post.title %></h1>
 
-商品名：<%= @post.title %><br>
-商品説明文：<%= @post.body %><br>
+<p>投稿者：<%= @post.user.name%></p>
+トレーニング内容：<%= @post.body %><br>
+効果部位：<%= @post.part_i18n %><br>
+強度：<%= @post.strong_i18n %><br>
 
-<% if @post.post_images.present? %>
-  <% @post.post_images.each do |image| %>
-    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+<%= attachment_image_tag(@post, :start_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130") %>
+<%= attachment_image_tag(@post, :finish_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130") %>
+
+<% if @post.favorited_by?(current_user) %>
+  <%= link_to post_favorites_path(@post, redirect_id: 0), method: :delete do %>
+    <span class="glyphicon glyphicon-heart"><%= @post.favorites.count%></span>
   <% end %>
   <% else %>
-    <%= image_tag 'no-image.png', size: '200x200' %>
+  <%= link_to post_favorites_path(@post, redirect_id: 0), method: :post do %>
+    <span class="glyphicon glyphicon-heart-empty"><%= @post.favorites.count %></span>
+  <% end %>
 <% end %>
 
 <%= link_to("編集",edit_post_path(@post.id)) %>
-<%= link_to "削除","posts/#{@post.id}", method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+<%= link_to "削除", post_path, method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+<%= link_to("投降一覧へ",posts_path) %>

@@ -6,6 +6,8 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text :body
       t.integer :strong
       t.integer :part
+      t.string :start_image_id
+      t.string :finish_image_id
 
       t.timestamps
     end

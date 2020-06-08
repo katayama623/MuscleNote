@@ -1,51 +1,51 @@
 <div class="row">
-  <%= form_for(@user) do |f| %>
-  <div class="col-xs-3"></div>
+  <div style="width: 95%; margin-left: 10px">
+  <div>
+    <h2 class="text-center">
+      <strong>プロフィール編集</strong>
+    </h2>
 
-  <div class="col-xs-9">
-    <style>
-      div{
-        white-space: nowrap;
-      }
-    </style>
+    <%= form_for(@user) do |f| %>
+      <div class="form_group">
+        <%= f.text_field :name, placeholder: "ユーザー名を入力してください", class: "form-control" %>
+      </div><br>
 
-    <div class="form-group row" style="margin-top: 40px;">
-      <div class="col-xs-3">
-        <%= f.label :name, "ユーザーネーム" %>
+      <div class="form-group" >
+        <%= f.text_area :introduction, placeholder: "プロフィールを入力してください", rows: 7, class: "form-control" %>
       </div>
-      <div class="col-xs-10">
-        <%= f.text_field :name, class: "name" %>
+
+      <div style="text-align: center;">
+        <div class="wrapper image_box">
+          <div style="width: 300px; margin-right: 10px">
+            <div style="margin-bottom: 15px; text-align: center">
+              <%= attachment_image_tag @post, :profile_image, :limit, 300, 300, fallback: "no-image.png",size: "200x200",id:"prev_img" %>
+            </div>
+            <label for="post_img" class= "btn btn-primary btn-block label-img" style="width: auto; margin: 20px 0">
+              <%= f.attachment_field :profile_image,id: :post_img, class: "hidden" %>
+              プロフィール画像の選択
+            </label>
+          </div>
+        </div>
+
+        <h2 class="text-center" style="margin-top: 80px;">
+          <strong>アカウント情報</strong>
+        </h2>
+
+        <h3 class="wrapper2">
+          <strong>メールアドレス</strong>
+        </h3>
+
+        <div class="wrapper">
+          <%= f.text_field :email, placeholder: "ユーザー名を入力してください", class: "form-control" %>
+        </div>
+
+        <div style="margin: 100px 0;">
+          <%= f.submit "更新する" %>
+        </div>
+
+    <% end %>
+
       </div>
     </div>
-
-    <div class="form-group row">
-      <div class="col-xs-3">
-        <%= f.label :introduction, "プロフィール" %>
-      </div>
-      <div class="col-xs-10">
-        <%= f.text_area :introduction, class: "introduction" %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="post_img" style="width: 170px; margin: 20px 0">
-          プロフィール画像選択/プレビュー
-        </label>
-      </div>
-      <div class="col-xs-10">
-        <div style="margin-bottom: 15px;">
-        <%= attachment_image_tag @user, :profile_image, :limit, 300, 300, fallback: "NO-IMAGE.jpg",size: "200x200",id:"prev_img" %>
-      </div>
-        <%= f.attachment_field :profile_image,id: :post_img%>
-      </div>
-    </div>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-
   </div>
-
-  <% end %>
 </div>

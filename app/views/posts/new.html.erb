@@ -1,6 +1,55 @@
-<%= form_for(@post) do |f| %>
-  <p>商品名：<%= f.text_field :title %></p>
-  <p>商品説明文：<%= f.text_field :body %></p>
-  <p>商品画像：<%= f.attachment_field :post_images_images, multiple: true %></p>
-  <%= f.submit %>
-<% end %>
+<div class="row">
+  <div style="width: 95%; margin-left: 10px">
+	<div>
+	  <h2 class="text-center pt-5">
+	  	<strong>新規投稿</strong>
+	  </h2>
+		<%= form_for(@post) do |f| %>
+		  <div class="form_group">
+		    <%= f.text_field :title, placeholder: "トレーニング名を入力してください 例：腕立て伏せ", class: "form-control" %>
+		  </div><br>
+
+		  <div class="form-group" >
+		    <%= f.text_area :body, placeholder: "トレーニング内容,セット数などを入力してください", rows: 7, class: "form-control" %>
+		  </div>
+
+          <div style="text-align: center;">
+          	<div class="wrapper image_box">
+			  <div style="width: 300px; margin-right: 10px">
+		        <div style="margin-bottom: 15px; text-align: center">
+		        <%= attachment_image_tag @post, :start_image, :limit, 300, 300, fallback: "no-image.png",size: "200x200",id:"prev_img" %>
+		        </div>
+		        <label for="post_img" class= "btn btn-primary btn-block label-img" style="width: auto; margin: 20px 0">
+                        <%= f.attachment_field :start_image,id: :post_img, class: "hidden" %>
+                        スタートポジションの画像選択
+                </label>
+		      </div>
+
+		      <div style="width: 300px;">
+		        <div style="margin-bottom: 15px; text-align: center">
+		          <%= attachment_image_tag @post, :finish_image, :limit, 200, 200, fallback: "no-image.png",size: "200x200",id:"prev2_img" %>
+		        </div>
+		        <label for="post2_img" class= "btn btn-primary btn-block label-img" style="width: auto; margin: 20px 0">
+                        <%= f.attachment_field :finish_image,id: :post2_img, class: "hidden" %>
+                        トップ・ボトムポジションの画像選択
+                </label>
+		      </div>
+		    </div>
+
+
+		  <h4>
+		  	<strong>
+		    効果部位：<%= f.select :part, Post.parts.keys.map {|k| [I18n.t("enums.post.part.#{k}"), k]} %> &emsp; &emsp;
+		    強度：<%= f.select :strong, Post.strongs.keys.map {|k| [I18n.t("enums.post.strong.#{k}"), k]} %>
+		    </strong>
+		  </h4>
+		  <br>
+
+           <div style="margin-bottom: 100px;">
+		    <%= f.submit "投稿する" %>
+	   　　</div>
+	      </div>
+		<% end %>
+	</div>
+  </div>
+</div>

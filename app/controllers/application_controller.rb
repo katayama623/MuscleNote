@@ -2,19 +2,27 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
-    #sign in後のredirect先変更
-    def after_sign_in_path_for(resource)
-      user_path(resource)
-    end
 
-    #sign out後のredirect先変更
-    def after_sign_out_path_for(resource)
+    def after_sign_in_path_for(resource)
+     if user_signed_in?
+       user_path(resource)
+     else
+       admin_root_path
+     end
+
+  end
+
+
+  def after_sign_out_path_for(resource)
+    if  resource == :admin
+      new_admin_user_session_path
+    else
       root_path
     end
+  end
 
-    #sin up時の登録情報追加
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :profle_image, :email])
-      devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
+  end
 end
