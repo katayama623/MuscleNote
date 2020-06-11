@@ -25,6 +25,8 @@
   <%= button_to 'ブックマーク', post_books_path(@post) %>
 <% end %>
 
+<%= render 'posts/tag_list', tag_list: @post.tag_list %>
+
 <div class="row">
     <ul>
         <li class="comment-create">

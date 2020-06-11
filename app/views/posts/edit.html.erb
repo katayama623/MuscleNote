@@ -36,6 +36,10 @@
 		      </div>
 		    </div>
 
+		    <div class="form-group" >
+              <%= f.text_field :tag_list, placeholder: "タグつけてね　１０文字以上書かないでね", value: @post.tag_list.join(','), class: "form-control"%>
+            </div>
+
 
 		  <h4>
 		  	<strong>

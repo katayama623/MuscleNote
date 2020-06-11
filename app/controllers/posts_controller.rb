@@ -9,6 +9,9 @@ class PostsController < ApplicationController
     @post = Post.new
     @posts = Post.all
     @user = @post.user
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
@@ -52,7 +55,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :body, :strong, :part, :start_image, :finish_image)
+      params.require(:post).permit(:title, :body, :strong, :part, :start_image, :finish_image, :tag_list)
     end
 
     def screen_user(post)

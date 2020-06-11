@@ -14,6 +14,9 @@ class Post < ApplicationRecord
   attachment :start_image
   attachment :finish_image
 
+  # タグ付
+  acts_as_taggable
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
