@@ -80,7 +80,7 @@ $(window).scroll(function() {
 
 $(function() {
  $('a[href^="#"]').click(function() {
-  const speed = 800;
+  const speed = 600;
   const href = $(this).attr("href");
   const target = $(href == "#" || href == "" ? "html" : href);
   const position = target.offset().top;
