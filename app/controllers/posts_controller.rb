@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.post_images.build
   end
 
   def index
@@ -55,7 +56,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :body, :strong, :part, :start_image, :finish_image, :tag_list)
+      params.require(:post).permit(:title, :body, :strong, :part, :start_image, :finish_image, :tag_list, post_images_images: [])
     end
 
     def screen_user(post)
