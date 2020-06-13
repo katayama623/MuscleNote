@@ -5,8 +5,12 @@
 効果部位：<%= @post.part_i18n %><br>
 強度：<%= @post.strong_i18n %><br>
 
-<%= attachment_image_tag(@post, :start_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130") %>
-<%= attachment_image_tag(@post, :finish_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130") %>
+
+  <% @post.post_images.each do |post_image| %>
+
+    <%= attachment_image_tag post_image, :image, :style=>"width:300px;" %>
+
+  <% end %>
 
 <% if @post.favorited_by?(current_user) %>
   <%= link_to post_favorites_path(@post, redirect_id: 0), method: :delete do %>

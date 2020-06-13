@@ -71,8 +71,9 @@ gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'devise-i18n'
 
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
+
+gem "refile", github: 'refile/refile', require: "refile/rails"
+gem "refile-mini_magick", github: 'refile/refile-mini_magick'
 
 gem 'enum_help'
 
