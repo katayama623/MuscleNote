@@ -6,6 +6,8 @@
   <%= submit_tag 'Search', :title => nil %>
 <% end %>
   </div>
+
+  <%= @posts.all.count %>件
   <div>
 	<% @posts.each do |post| %>
 	  <div class="post_index">
