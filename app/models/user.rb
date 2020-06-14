@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :booked_posts, through: :books, source: :post
 
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :introduction, length: {maximum: 100}
+
   # follow機能
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
   has_many :following, through: :following_relationships
