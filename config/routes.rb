@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   root 'home#home'
   get  'posts/search'
-  resources :users,only: [:show, :edit, :update, :index] do
+  get 'users/:id/bookmark' => 'users#bookmark', as: 'users_bookmark'
+  resources :users do
     member do
           get :following, :followers
       end

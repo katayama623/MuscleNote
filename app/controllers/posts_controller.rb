@@ -8,10 +8,12 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
     @user = @post.user
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")
+      @posts = @posts.page(params[:page]).per(10)
     end
   end
 
@@ -34,8 +36,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post
     else
-      @posts = post.all
-      render 'index'
+      @posts = Post.all
+      render 'new'
     end
   end
 
@@ -57,6 +59,7 @@ class PostsController < ApplicationController
   def search
     #Viewのformで取得したパラメータをモデルに渡す
     @posts = Post.search(params[:search])
+    @posts = @posts.page(params[:page]).per(10)
     @search = params[:search]
   end
 

@@ -78,3 +78,5 @@ gem "refile-mini_magick", github: 'refile/refile-mini_magick'
 gem 'enum_help'
 
 gem 'acts-as-taggable-on', '~> 6.0'
+
+gem 'kaminari'

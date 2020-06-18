@@ -35,6 +35,7 @@
   width: 80%;
   margin-left:50px;
   margin-top: 50px;
+background: rgba(173,216,255,0.3);
 }
 
 #wrapper {
@@ -111,6 +112,13 @@ body {
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
 }
 
+.img2 {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width: 70px;  /* 縦横を同じ値にする */
+  height: 70px;  /* 縦横を同じ値にする */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
 .bottom {
   position: relative;
   display: inline-block;
@@ -143,7 +151,7 @@ body {
 }
 
 .post_index {
-  background-color: white;
+  background: rgba(255,255,255,0.6);
   margin: 7px;
   padding: 6px;
 }
@@ -253,3 +261,4 @@ h2 {
   box-sizing: border-box;
  }
 }
+

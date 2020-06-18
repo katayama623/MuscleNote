@@ -4,7 +4,6 @@
   <%= submit_tag 'Search', :title => nil %>
 <% end %>
 <%= @search %>検索結果
-<%= @posts.all.count %>件
 
 <% @posts.each do |post| %>
   <div class="post_index">
@@ -28,4 +27,6 @@
 
   </div>
 <% end %>
+
+<%= paginate @posts %>
 

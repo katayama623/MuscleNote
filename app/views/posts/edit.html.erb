@@ -4,6 +4,11 @@
 	  <h2 class="text-center pt-5">
 	  	<strong>トレーニングの編集</strong>
 	  </h2>
+
+      <div style="color: red">
+      <%= render "devise/shared/error_messages", resource: @post %>
+      </div>
+
 		<%= form_for(@post) do |f| %>
 		  <div class="form_group">
 		    <%= f.text_field :title, placeholder: "トレーニング名を入力してください 例：腕立て伏せ", class: "form-control" %>
@@ -16,7 +21,7 @@
           <div style="text-align: center;">
           	<div class="wrapper image_box">
 			  <div style="width: 300px; margin-right: 10px">
-		        
+
 		      </div>
 		      <p>商品画像：<%= f.attachment_field :post_images_images, multiple: true %></p>
 		    </div>

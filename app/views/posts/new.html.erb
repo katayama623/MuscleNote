@@ -4,6 +4,12 @@
 	  <h2 class="text-center pt-5">
 	  	<strong>新規投稿</strong>
 	  </h2>
+
+
+      <div style="color: red">
+      <%= render "devise/shared/error_messages", resource: @post %>
+      </div>
+
 		<%= form_for(@post) do |f| %>
 		  <div class="form_group">
 		    <%= f.text_field :title, placeholder: "トレーニング名を入力してください 例：腕立て伏せ", class: "form-control" %>

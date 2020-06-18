@@ -6,7 +6,7 @@
         <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %>
       </div>
       <h3 style="text-align: center;">
-        <strong><%= @user.name %></strong>
+        <strong><%= current_user.name %></strong>
       </h3>
 
       <h4 style="text-align: center; margin-top: 30px;">
@@ -27,28 +27,26 @@
           <%= render "follow_form" %>
       </div>
 
-      <div class="user-post">
-        <%= link_to 'トレーニングを投稿する', new_post_path(@post), :style=>"text-decoration: none;", class: "bottom" %>
-      </div>
-
     </div>
   </div>
 
   <div class="col-lg-6">
     <div style="width: 100%;margin-top: 40px;">
-      <div>
-        <%= link_to 'ブックマーク一覧', users_bookmark_path(@user), :style=>"text-decoration: none;", class: "bottom" %>
+      <div class="user-post">
+        <%= link_to 'トレーニングを投稿する', new_post_path(@post), :style=>"text-decoration: none;", class: "bottom" %>
       </div>
       <div>
-        <h3>
-          <strong>
-            投降一覧　全<%= @user.posts.count%>件
-          </strong>
-        </h3>
+        <%= link_to '投稿一覧', user_path, :style=>"text-decoration: none;", class: "bottom" %>
       </div>
 
-      <% @posts.each do |post| %>
+      <div>
+        <h3>
+          <strong>ブックマーク</strong>
+        </h3>
+      </div>
+      <% @user.booked_posts.each do |post| %>
         <div class="post_index">
+          <p><%= post.user.name %></p>
           <p><%= link_to post.title,post, class: "post_#{post.id}" %></p>
           <p>トレーニング内容：<%= post.body %></p>
           <p>効果部位：<%= post.part_i18n %></p>
@@ -64,7 +62,6 @@
           <% end %>
         </div>
       <% end %>
-
     </div>
   </div>
 
