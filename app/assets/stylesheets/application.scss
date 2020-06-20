@@ -107,8 +107,8 @@ body {
 
 .img {
   border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-  width: 100px;  /* 縦横を同じ値にする */
-  height: 100px;  /* 縦横を同じ値にする */
+  width: 80px;  /* 縦横を同じ値にする */
+  height: 80px;  /* 縦横を同じ値にする */
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
 }
 
@@ -152,8 +152,8 @@ body {
 
 .post_index {
   background: rgba(255,255,255,0.6);
-  margin: 7px;
-  padding: 6px;
+  margin: 8px;
+  padding: 15px;
 }
 
 .user-post {
@@ -262,3 +262,22 @@ h2 {
  }
 }
 
+.button5 {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 18pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #000066;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+  border        : 2px solid #000066;    /* 枠の指定 */
+}
+.button5:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #b0e0e6;
+  background    : #ffffff;     /* 文字色     */
+}

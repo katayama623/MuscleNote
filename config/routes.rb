@@ -6,6 +6,19 @@ Rails.application.routes.draw do
 
   root 'home#home'
   get  'posts/search'
+  get  'posts/search2'
+  get  'posts/part0'
+  get  'posts/part1'
+  get  'posts/part2'
+  get  'posts/part3'
+  get  'posts/part4'
+  get  'posts/part5'
+  get  'posts/part6'
+  get  'posts/part7'
+  get  'posts/part8'
+  get  'posts/strong0'
+  get  'posts/strong1'
+  get  'posts/strong2'
   get 'users/:id/bookmark' => 'users#bookmark', as: 'users_bookmark'
   resources :users do
     member do

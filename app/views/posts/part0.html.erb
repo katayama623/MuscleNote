@@ -1,0 +1,28 @@
+
+<strong>
+  	<% @posts.each do |post| %>
+    <% if post.part == 'part0' %>
+
+    	  <div class="post_index">
+    	  	<%= attachment_image_tag(post.user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %>
+    		<p>投稿者：<%= link_to(post.user.name,"/users/#{post.user.id}") %></p>
+    		<p>トレーニング名：<%= link_to post.title,post, class: "post_#{post.id}" %></p>
+    		<p>効果部位：<%= post.part_i18n %></p>
+    		<p>強度：<%= post.strong_i18n %></p>
+    		<% if post.favorited_by?(current_user) %>
+                <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
+                  <span class="glyphicon glyphicon-heart">いいね <%= post.favorites.count%></span>
+                <% end %>
+              <% else %>
+                <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
+                  <span class="glyphicon glyphicon-heart-empty">いいね <%= post.favorites.count %></span>
+                <% end %>
+            <% end %>
+            <p>コメント数<%= post.post_comments.count %></p>
+            <%= render 'posts/tag_list', tag_list: post.tag_list %>
+
+    	  </div>
+    <% end %>
+  	<% end %>
+    </strong>
+  </div>

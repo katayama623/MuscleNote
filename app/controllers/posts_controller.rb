@@ -10,10 +10,12 @@ class PostsController < ApplicationController
     @post = Post.new
     @posts = Post.all.page(params[:page]).per(10)
     @user = @post.user
+    @strongs = Post.select("strong")
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    @tags = ActsAsTaggableOn::Tag.all
     if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}")
-      @posts = @posts.page(params[:page]).per(10)
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
     end
   end
 
@@ -58,9 +60,158 @@ class PostsController < ApplicationController
 
   def search
     #Viewのformで取得したパラメータをモデルに渡す
-    @posts = Post.search(params[:search])
-    @posts = @posts.page(params[:page]).per(10)
+    @posts = Post.search(params[:search]).page(params[:page]).per(3)
+    #@posts = @posts.page(params[:page]).per(3)
     @search = params[:search]
+  end
+
+  def search2
+    selection = params[:keyword]
+    @posts = Post.sort(selection)
+ end
+
+  def part0
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part1
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part2
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part3
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part4
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part5
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part6
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part7
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def part8
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def strong0
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def strong1
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
+  end
+
+  def strong2
+    @post = Post.new
+    @posts = Post.all
+    @user = @post.user
+    @tags = ActsAsTaggableOn::Tag.all
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # @posts = @posts.page(params[:page]).per(10)
+    end
   end
 
   private
