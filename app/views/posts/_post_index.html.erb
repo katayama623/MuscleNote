@@ -8,7 +8,9 @@
         <h4 style="text-align: center;"><%= link_to post.title,post, class: "post_#{post.id}" %></h4>
         <p>効果部位：<%= post.part_i18n %></p>
         <p>強度：<%= post.strong_i18n %></p>
-        <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+        <div style="margin-top: 8px;">
+        コメント数&emsp;<%= post.post_comments.count %> &emsp;
         <% if post.favorited_by?(current_user) %>
           <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
             <span class="glyphicon glyphicon-heart">いいね <%= post.favorites.count%></span>
@@ -18,8 +20,10 @@
             <span class="glyphicon glyphicon-heart-empty">いいね <%= post.favorites.count %></span>
           <% end %>
         <% end %>
-        <p>コメント数<%= post.post_comments.count %></p>
-        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+        </div>
+        <div style="margin-top: 8px;">
+          投稿日：<%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </div>
     </div>
   </div>
 </div>

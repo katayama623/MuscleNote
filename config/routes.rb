@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'home#home'
   get  'posts/search'
-  get  'posts/search2'
+  get 'search2' => 'posts#search2'
   get  'posts/part0'
   get  'posts/part1'
   get  'posts/part2'
