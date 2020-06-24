@@ -1,14 +1,12 @@
 <!-- フォローボタン -->
-
-
 	<div class="follower">
         <%= link_to followers_user_path(@user.id) do %>
-          <h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
+          <h4 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
         <% end %>
       </div>
       <div class="follow">
         <%= link_to following_user_path(@user.id) do %>
-          <h5 style="color: black;">フォロー<%= @user.following.count %>人</h5>
+          <h4 style="color: black;">フォロー<%= @user.following.count %>人</h5>
         <% end %>
       </div>
 <% if @user != current_user%>
@@ -25,5 +23,6 @@
     <% end %>
 
 <% end %>
+
 
 

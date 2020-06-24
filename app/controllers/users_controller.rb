@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.reverse_order.page(params[:page]).per(10)
     @post = Post.new
   end
 
@@ -28,20 +28,20 @@ class UsersController < ApplicationController
   def following
     #@userがフォローしているユーザー
     @user  = User.find(params[:id])
-    @users = @user.following
+    @users = @user.following.reverse_order.page(params[:page]).per(10)
     render 'show_follow'
   end
 
   def followers
     #@userをフォローしているユーザー
     @user  = User.find(params[:id])
-    @users = @user.followers
+    @users = @user.followers.reverse_order.page(params[:page]).per(10)
     render 'show_follower'
   end
 
   def bookmark
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(10)
     @post = Post.new
   end
 

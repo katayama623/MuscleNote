@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
+  before_action :authenticate_user!,only: [:new, :show, :create,:edit,:update,:destroy]
 
   def new
     @post = Post.new
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @strongs = Post.select("strong")
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
 
   def search
     #Viewのformで取得したパラメータをモデルに渡す
-    @posts = Post.search(params[:search]).page(params[:page]).per(10)
+    @posts = Post.search(params[:search]).reverse_order.page(params[:page]).per(10)
     #@posts = @posts.page(params[:page]).per(3)
     @search = params[:search]
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
 
   def search2
     selection = params[:keyword]
-    @posts = Post.sort(selection).page(params[:page]).per(10)
+    @posts = Post.sort(selection).reverse_order.page(params[:page]).per(10)
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
     @tags = ActsAsTaggableOn::Tag.all
     if params[:tag_name]
@@ -84,7 +84,7 @@ class PostsController < ApplicationController
 
   def part0
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -96,7 +96,7 @@ class PostsController < ApplicationController
 
   def part1
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @strongs = Post.select("strong")
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -109,7 +109,7 @@ class PostsController < ApplicationController
 
   def part2
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -121,7 +121,7 @@ class PostsController < ApplicationController
 
   def part3
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -133,7 +133,7 @@ class PostsController < ApplicationController
 
   def part4
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -145,7 +145,7 @@ class PostsController < ApplicationController
 
   def part5
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -157,7 +157,7 @@ class PostsController < ApplicationController
 
   def part6
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -169,7 +169,7 @@ class PostsController < ApplicationController
 
   def part7
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -181,7 +181,7 @@ class PostsController < ApplicationController
 
   def part8
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -193,7 +193,7 @@ class PostsController < ApplicationController
 
   def strong0
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -205,7 +205,7 @@ class PostsController < ApplicationController
 
   def strong1
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
@@ -217,7 +217,7 @@ class PostsController < ApplicationController
 
   def strong2
     @post = Post.new
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.reverse_order.page(params[:page]).per(10)
     @user = @post.user
     @tags = ActsAsTaggableOn::Tag.all
     @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))

@@ -1,69 +1,87 @@
 <div class="row">
-  <div class="col-lg-5">
+  <div class="col-lg-6">
 
     <div class="main-profile">
-      <div style="text-align: center;">
-        <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %>
-      </div>
-      <h3 style="text-align: center;">
-        <strong><%= @user.name %></strong>
-      </h3>
+      <div class="row">
+        <div class="col-xs-6">
+          <div style="margin-left: 45px;">
+            <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, fallback: "no-image.png",size: "200x200", class: "img3") %>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <h3>
+            <strong><%= @user.name %></strong>
+          </h3>
+          <!-- フォロー機能 -->
+          <div id="follow_form" style="margin: 40px 0;">
+              <%= render "follow_form" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h4 style="text-align: center; margin-top: 30px;">
+                <strong style="border-bottom: solid 2px;">プロフィール</strong>
+            </h4>
+            <h5 style="padding: 8px;">
+              <strong>
+              <%= @user.introduction %>
+            </strong>
+            </h5>
 
-      <h4 style="text-align: center; margin-top: 30px;">
-        <strong class="profile">プロフィール</strong>
-      </h4>
-      <div style="border:groove; 3px #696969; background-color: #fff;min-height: 80px;font-size: 15px;">
-        <%= @user.introduction %>
+            <% if @user.id == current_user.id %>
+              <h4 style="text-align: center;margin-top: 30px;">
+                <%= link_to 'プロフィール編集',edit_user_path(@user), :style=>"text-decoration: none;", class: "bottom edit_user_#{@user.id} " %>
+              </h4>
+              <h4 style="text-align: center">
+                <%= link_to 'ブックマーク一覧', users_bookmark_path(@user), :style=>"text-decoration: none;", class: "bottom" %>
+              </h4>
+              <h4 style="text-align: center;">
+                <%= link_to 'トレーニングを投稿する', new_post_path(@post), :style=>"text-decoration: none;", class: "bottom" %>
+              </h4>
+            <% end %>
+          </div>
+        </div>
       </div>
-
-      <% if @user.id == current_user.id %>
-      <div style="text-align: center;margin-top: 20px;color: blue;">
-        <%= link_to 'プロフィール編集',edit_user_path(@user), :style=>"text-decoration: none;", class: "bottom edit_user_#{@user.id} " %>
-      </div>
-      <% end %>
-
-      <!-- フォロー機能 -->
-      <div id="follow_form">
-          <%= render "follow_form" %>
-      </div>
-
-      <div class="user-post">
-        <%= link_to 'トレーニングを投稿する', new_post_path(@post), :style=>"text-decoration: none;", class: "bottom" %>
-      </div>
-
     </div>
   </div>
 
   <div class="col-lg-6">
     <div style="width: 100%;margin-top: 40px;">
       <div>
-        <%= link_to 'ブックマーク一覧', users_bookmark_path(@user), :style=>"text-decoration: none;", class: "bottom" %>
-      </div>
-      <div>
-        <h3>
-          <strong>
-            投降一覧　全<%= @user.posts.count%>件
-          </strong>
-        </h3>
+        <h2>投稿一覧</h2>
       </div>
 
       <% @posts.each do |post| %>
+      <strong>
         <div class="post_index">
-          <p><%= link_to post.title,post, class: "post_#{post.id}" %></p>
-          <p>トレーニング内容：<%= post.body %></p>
-          <p>効果部位：<%= post.part_i18n %></p>
-          <p>強度：<%= post.strong_i18n %></p>
-          <% if post.favorited_by?(current_user) %>
-            <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
-              <span class="glyphicon glyphicon-heart"><%= post.favorites.count%></span>
-            <% end %>
-          <% else %>
-            <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
-              <span class="glyphicon glyphicon-heart-empty"><%= post.favorites.count %></span>
-            <% end %>
-          <% end %>
+          <div class="row">
+            <div class="col-xs-4">
+              <div style="margin: 30px 0 0 20px;"><%= attachment_image_tag(post.user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %></div>
+              <h4>投稿者：<%= link_to(post.user.name,"/users/#{post.user.id}") %></h4>
+            </div>
+            <div class="col-xs-7">
+              <h4>
+                <strong style="border-left: 11px solid #9caeb7;padding: 5px 10px 5px 8px;background: #d0dee5;margin: 15px;"><%= link_to post.title,post, class: "post_#{post.id}", :style=>"text-decoration:none;" %>
+                </strong>
+              </h4>
+              <p>効果部位：<%= post.part_i18n %></p>
+              <p>強度：<%= post.strong_i18n %></p>
+              <%= render 'posts/tag_list', tag_list: post.tag_list %>
+              <div style="margin-top: 8px;">
+                コメント数　<%= post.post_comments.count %> &emsp;&emsp;
+                いいね数　<%= post.favorites.count%>
+              </div>
+              <div style="margin-top: 8px;">
+                投稿日：<%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            </div>
+          </div>
         </div>
+        </div>
+      </strong>
       <% end %>
+      <div style="margin-bottom: 100px;">
+        <%= paginate @posts %>
+      </div>
 
     </div>
   </div>

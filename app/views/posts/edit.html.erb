@@ -1,49 +1,60 @@
 <div class="row">
-  <div style="width: 95%; margin-left: 10px">
-	<div>
+  <div style="width: 90%; margin-left: 15px">
 	  <h2 class="text-center pt-5">
-	  	<strong>トレーニングの編集</strong>
+	  	<strong>新規投稿</strong>
 	  </h2>
-
       <div style="color: red">
-      <%= render "devise/shared/error_messages", resource: @post %>
+        <%= render "devise/shared/error_messages", resource: @post %>
       </div>
 
-		<%= form_for(@post) do |f| %>
-		  <div class="form_group">
-		    <%= f.text_field :title, placeholder: "トレーニング名を入力してください 例：腕立て伏せ", class: "form-control" %>
-		  </div><br>
+		  <%= form_for(@post) do |f| %>
+		    <div class="form_group">
+		  	  <br>
+		      <h4>
+		        <strong>トレーニング名</strong>
+		      </h4>
+		      <%= f.text_field :title, placeholder: "トレーニング名を入力してください 例：腕立て伏せ", class: "form-control" %>
+		    </div><br>
 
-		  <div class="form-group" >
-		    <%= f.text_area :body, placeholder: "トレーニング内容,セット数などを入力してください", rows: 7, class: "form-control" %>
-		  </div>
+			  <div class="form-group" >
+			  	<br>
+			    <h4>
+			      <strong>トレーニング内容</strong>
+			    </h4>
+			    <%= f.text_area :body, placeholder: "トレーニング内容,セット数などを入力してください
+・10~15回　3セット", rows: 7, class: "form-control" %>
+			  </div>
 
-          <div style="text-align: center;">
-          	<div class="wrapper image_box">
-			  <div style="width: 300px; margin-right: 10px">
-
-		      </div>
-		      <p>商品画像：<%= f.attachment_field :post_images_images, multiple: true %></p>
-		    </div>
-
-		    <div class="form-group" >
-              <%= f.text_field :tag_list, placeholder: "タグつけてね　１０文字以上書かないでね", value: @post.tag_list.join(','), class: "form-control"%>
-            </div>
-
-
-		  <h4>
-		  	<strong>
-		    効果部位：<%= f.select :part, Post.parts.keys.map {|k| [I18n.t("enums.post.part.#{k}"), k]} %> &emsp; &emsp;
-		    強度：<%= f.select :strong, Post.strongs.keys.map {|k| [I18n.t("enums.post.strong.#{k}"), k]} %>
-		    </strong>
-		  </h4>
-		  <br>
-
-           <div style="margin-bottom: 100px;">
-		    <%= f.submit "更新する" %>
-	   　　</div>
+	      <div class="form-group" >
+	      	<br>
+		      <h4>
+		      	<strong>画像選択（複数選択可能）</strong>
+		      </h4>
+		        <%= f.attachment_field :post_images_images,id: :post_img, multiple: true %>
 	      </div>
-		<% end %>
+
+        <br>
+			  <h4>
+			  	<strong>
+			    効果部位：<%= f.select :part, Post.parts.keys.map {|k| [I18n.t("enums.post.part.#{k}"), k]} %> &emsp; &emsp;
+			    強度：<%= f.select :strong, Post.strongs.keys.map {|k| [I18n.t("enums.post.strong.#{k}"), k]} %>
+			    </strong>
+			  </h4>
+			  <br>
+
+	    <div class="form-group" >
+        	<br>
+        	<h4>
+        		<strong>タグ（複数記入可能）</strong>
+        		<strong>複数記入される場合はカンマで区切ってください</strong>
+        	</h4>
+          <%= f.text_field :tag_list, placeholder: "記入例：大胸筋,肩", value: @post.tag_list.join(','), class: "form-control"%>
+        </div>
+        <br>
+
+        <div style="margin-bottom: 100px; text-align: center;">
+		      <%= f.submit "投稿する" %>
+	      </div>
+		  <% end %>
 	</div>
-  </div>
 </div>

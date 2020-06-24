@@ -1,25 +1,20 @@
 <div class="post_index">
   <div class="row">
-    <div class="col-xs-5">
-      <div style="margin-top: 10px;"><%= attachment_image_tag(post.user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %></div>
+    <div class="col-xs-4">
+      <div style="margin: 30px 0 0 20px;"><%= attachment_image_tag(post.user, :profile_image, :fill, 100, 100, fallback: "no-image.png",size: "130x130", class: "img") %></div>
       <h4>投稿者：<%= link_to(post.user.name,"/users/#{post.user.id}") %></h4>
     </div>
     <div class="col-xs-7">
-        <h4 style="text-align: center;"><%= link_to post.title,post, class: "post_#{post.id}" %></h4>
+        <h4>
+          <strong style="border-left: 11px solid #9caeb7;padding: 5px 10px 5px 8px;background: #d0dee5;margin: 15px;"><%= link_to post.title,post, class: "post_#{post.id}", :style=>"text-decoration:none;" %>
+          </strong>
+        </h4>
         <p>効果部位：<%= post.part_i18n %></p>
         <p>強度：<%= post.strong_i18n %></p>
         <%= render 'posts/tag_list', tag_list: post.tag_list %>
         <div style="margin-top: 8px;">
-        コメント数&emsp;<%= post.post_comments.count %> &emsp;
-        <% if post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete do %>
-            <span class="glyphicon glyphicon-heart">いいね <%= post.favorites.count%></span>
-          <% end %>
-        <% else %>
-          <%= link_to post_favorites_path(post, redirect_id: 0), method: :post do %>
-            <span class="glyphicon glyphicon-heart-empty">いいね <%= post.favorites.count %></span>
-          <% end %>
-        <% end %>
+        コメント数　<%= post.post_comments.count %> &emsp;&emsp;
+        いいね数　<%= post.favorites.count%>
         </div>
         <div style="margin-top: 8px;">
           投稿日：<%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>

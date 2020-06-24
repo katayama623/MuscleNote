@@ -1,5 +1,5 @@
-<div class="row">
-  <h2>投降一覧</h2>
+<div id="top"></div>
+<div class="row" id="post_index">
 
   <!-- 検索フォーム -->
   <%= render 'posts/search_form' %>
@@ -7,6 +7,7 @@
   <div class="col-lg-6">
 
     <!-- 投降一覧 -->
+    <h2>効果部位で検索：その他</h2>
     <strong>
   	  <% @posts.each do |post| %>
       <% if post.part == 'part8' %>
@@ -32,7 +33,7 @@
 
 
     <!-- タグ一覧 -->
-    <h2 style="background: rgba(110,240,255,0.3);color: black;">タグで検索</h2>
+    <h2 class="side">タグで検索</h2>
     <h3 style="padding: 15px; background: rgba(200,240,255,0.3);">
       <div style="margin: 5px 3px;">
         <% @tags.each do |tag| %>
@@ -47,7 +48,7 @@
 
       <!-- 効果部位一覧 -->
       <div class="col-xs-6">
-        <h2 style="background: rgba(110,240,255,0.3);color: black;">効果部位で検索</h2>
+        <h2 class="side">効果部位で検索</h2>
         <h3 style="padding: 15px; background: rgba(200,240,255,0.3);">
           <div style="margin: 5px 3px;">
             <%= link_to posts_part0_path, :style=>"text-decoration:none;" do %>
@@ -98,16 +99,14 @@
           </div>
 
           <div style="margin: 5px 3px;">
-            <%= link_to posts_part8_path, :style=>"text-decoration:none;" do %>
             その他
-            <% end %>
           </div>
         </h3>
       </div>
 
       <!-- 強度一覧 -->
       <div class="col-xs-6">
-        <h2 style="background: rgba(110,240,255,0.3);color: black;">強度で検索</h2>
+        <h2 class="side">強度で検索</h2>
         <h3 style="padding: 15px; background: rgba(200,240,255,0.3);">
           <div style="margin: 5px 3px;">
             <%= link_to posts_strong0_path, :style=>"text-decoration:none;" do %>
@@ -128,6 +127,13 @@
           </div>
       </div>
     </div>
+    <div class="org_to_top">
+    <a href="#top">
+      <div class="m_to_top">
+      ↑
+      </div>
+    </a>
+  </div>
 
   </div>
 </div>

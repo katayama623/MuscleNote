@@ -17,6 +17,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@keyframes typing { from { width: 0; } }
+@keyframes blink-caret { 50% { border-color: transparent; } }
+
+
 * {
   margin: 0;
   padding: 0;
@@ -119,21 +123,26 @@ body {
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
 }
 
+.img3 {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width: 120px;  /* 縦横を同じ値にする */
+  height: 120px;  /* 縦横を同じ値にする */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
 .bottom {
   position: relative;
   display: inline-block;
   font-weight: bold;
-  padding: 0.5em 1em;
+  padding: 0.2em 0.5em;
   text-decoration: none;
-  border-left: solid 4px #668ad8;
-  border-right: solid 4px #668ad8;
-  color: #668ad8;
-  background: #e1f3ff;
+  color: #000008;
+  background: #fff;
   transition: .4s;
 }
 
 .bottom:hover {
-  background: #668ad8;
+  background: #000000;
   color: #FFF;
 }
 
@@ -162,7 +171,7 @@ body {
 
 .wrap {
  min-height: 230vh;
- padding-bottom: 10vh;
+ padding-bottom: 3vh;
 }
 
 h1,
@@ -172,9 +181,10 @@ h2 {
  background: rgba(0,0,0,0.8);
 }
 
+
 .hero {
  width: 100%;
- min-height: 350px;
+ min-height: 230px;
  display: flex;
  justify-content: center;
  align-items: center;
@@ -183,6 +193,9 @@ h2 {
  background-attachment: fixed;
  margin-bottom: 120px;
  margin-top: 50px;
+ background-color:rgba(255,255,255,0.3);
+
+
 
 
  h1 {
@@ -219,6 +232,19 @@ h2 {
   &.full {
    width: 100%;
    font-size: 3rem;
+  }
+  &.full2 {
+   width: 100%;
+   font-size: 3rem;
+   height:auto;
+   padding: 30px;
+  }
+  &.full3 {
+   width: 80%;
+   font-size: 3rem;
+   height:200px;
+   padding: 30px;
+   transition: all 2s ease;
   }
   &.left {
    transform: translate3d(-100%, 0, 0);
@@ -296,4 +322,22 @@ h2 {
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
+}
+
+.side {
+  color: #010101;/*文字色*/
+  background: rgba(110,200,255,0.3);
+  border-bottom: solid 3px #516ab6;/*下線*/
+}
+
+.type {
+  font: bold 200% Consolas, Monaco, monospace;
+  border-right: .1em solid;
+  width: 26.5em; /* fallback */
+  width: 55ch; /* # of chars */
+  margin: 2em 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2.3s steps(25, end), /* # of steps = # of chars */
+             blink-caret .5s step-end infinite alternate;
 }

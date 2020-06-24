@@ -1,41 +1,60 @@
 <div id="top"></div>
+<div id="toppage"class="row">
 
 <div class="wrap">
   <div class="hero">
-    <h1>Welcome to Muscle Note</h1>
-  </div>
-
-
-
-  <div class="animation">
-    <div class="anm_mod">
-      anm_mod
+    <div class="type">
+      <div style="background:rgba(0,0,0,0.8)">
+      <div style="font-size: 60px; color: white;">Welcome to Muscle Note !!</div>
     </div>
-    <div class="anm_mod delay">
-      anm_mod delay
     </div>
   </div>
 
-  <div class="animation">
-    <div class="anm_mod full">
+  <div class="animation" style="background-image: url(assets/workout-fitness-center.jpg);">
+    <div class="anm_mod full" style="background:rgba(100,100,130,0.3);">
       <div class="row">
         <div class="col-lg-6">
-          ああああああああああああああああああああああああああああああああああああ
+          <div>
+            <%= link_to(("/"), :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
+              <img src="/assets/logo.png" alt="">
+            <% end %>
+            <h3>
+              <strong>Muscle Noteとは？</strong>
+            </h3>
+          </div>
         </div>
         <div class="col-lg-6">
-          ここで切り替わるよあああああああああああああああああああああああ
+          <h3 style="padding: 5px;text-align: left;">マッスルノートは体を鍛えたい人たちが知識の共有の場として利用出来る、筋トレメニューに絞ったSNSサイトです</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="animation" style="background-image: url(assets/workout-fitness-center.jpg);" id="main">
+    <div class="anm_mod full2" style="background:rgba(100,100,130,0.3);">
+      <div class="row">
+        <div class="col-lg-6">
+          <div>
+            <%= link_to(("/"), :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
+              <img src="/assets/screen.png" alt="" style="width: 300px;">
+            <% end %>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h3 style="padding: 5px;text-align: left;">マッスルノートは体を鍛えたい人たちが知識の共有の場として利用出来る、筋トレメニューに絞ったSNSサイトです</h3>
         </div>
       </div>
     </div>
   </div>
 
   <div class="animation">
-    <div class="anm_mod left fast">
+    <div class="anm_mod left fast" style="height: 200px;">
       <%= link_to new_user_registration_path do %>
       新規登録の方は　こちらへ
       <% end %>
     </div>
-    <div class="anm_mod right delay">
+    <div class="anm_mod right delay" style="height: 200px;">
       <%= link_to new_user_session_path do %>
       登録済みの方は　こちらへ
       <% end %>
@@ -50,4 +69,5 @@
     </a>
   </div>
 
+</div>
 </div>
