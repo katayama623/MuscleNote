@@ -1,7 +1,7 @@
 <div style="height: 100px; width: auto">
   <div style="text-align: center;background-color: black;height: 140px;">
   <%= link_to(("/"), :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
-    <img src="/assets/logo.png" alt="">
+    <%= image_tag asset_path("logo.png") %>
   <% end %>
   </div>
 </div>
