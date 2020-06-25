@@ -23,7 +23,7 @@
 
     <!-- 人気投稿 -->
     <h2 style="text-align: center">人気投稿</h2>
-    <strong>s
+    <strong>
       <% @all_ranks.each do |post| %>
         <%= render 'posts/post_index', post: post %>
       <% end %>
@@ -102,6 +102,8 @@
             <% end %>
           </div>
         </h3>
+        <h2 style="text-align: center" style="margin-top: 20px;">公式ツイッター</h2>
+        <a class="twitter-timeline" href="https://twitter.com/note_muscle?ref_src=twsrc%5Etfw">Tweets by note_muscle</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
 
       <!-- 強度一覧 -->

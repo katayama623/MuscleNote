@@ -10,13 +10,13 @@
     </div>
   </div>
 
-  <div class="animation" style="background-image: url(assets/workout-fitness-center.jpg);">
+  <div class="animation home1">
     <div class="anm_mod full" style="background:rgba(100,100,130,0.3);">
       <div class="row">
         <div class="col-lg-6">
           <div>
             <%= link_to(("/"), :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
-              <img src="/assets/logo.png" alt="">
+              <%= image_tag asset_path("logo.png") %>
             <% end %>
             <h3>
               <strong>Muscle Noteとは？</strong>
@@ -31,31 +31,31 @@
   </div>
 
 
-  <div class="animation" style="background-image: url(assets/workout-fitness-center.jpg);" id="main">
+  <div class="animation home2">
     <div class="anm_mod full2" style="background:rgba(100,100,130,0.3);">
       <div class="row">
         <div class="col-lg-6">
           <div>
             <%= link_to(("/"), :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
-              <img src="/assets/screen.png" alt="" style="width: 300px;">
+              <%= image_tag asset_path("screen.png"), :style=>"width:300px;margin-top:20px;" %>
             <% end %>
           </div>
         </div>
         <div class="col-lg-6">
-          <h3 style="padding: 5px;text-align: left;">マッスルノートは体を鍛えたい人たちが知識の共有の場として利用出来る、筋トレメニューに絞ったSNSサイトです</h3>
+          <h3 style="padding: 5px;text-align: left;">投稿には効果部位や強度を設定できるだけでなく、投稿者自身が細かくタグを設定できるため、検索手段が豊富です！<br><br>どんな投稿があるか<%= link_to "こちら", posts_path, :style=>"color:gold" %>からみてみましょう！</h3>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="animation">
-    <div class="anm_mod left fast" style="height: 200px;">
-      <%= link_to new_user_registration_path do %>
+  <div class="animation home3">
+    <div class="anm_mod left fast" style="height: 200px;background:rgba(100,100,130,0.3);">
+      <%= link_to new_user_registration_path, :style=>"color:gold" do %>
       新規登録の方は　こちらへ
       <% end %>
     </div>
-    <div class="anm_mod right delay" style="height: 200px;">
-      <%= link_to new_user_session_path do %>
+    <div class="anm_mod right delay" style="height: 200px;background:rgba(100,100,130,0.3);">
+      <%= link_to new_user_session_path, :style=>"color:gold" do %>
       登録済みの方は　こちらへ
       <% end %>
     </div>

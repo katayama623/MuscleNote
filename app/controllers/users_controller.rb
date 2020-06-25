@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :screen_user, only: [:edit, :update]
 
   def index
+    
 
   end
 
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
 
   def following
     #@userがフォローしているユーザー
+    @post = Post.new
     @user  = User.find(params[:id])
     @users = @user.following.reverse_order.page(params[:page]).per(10)
     render 'show_follow'
@@ -34,6 +36,7 @@ class UsersController < ApplicationController
 
   def followers
     #@userをフォローしているユーザー
+    @post = Post.new
     @user  = User.find(params[:id])
     @users = @user.followers.reverse_order.page(params[:page]).per(10)
     render 'show_follower'

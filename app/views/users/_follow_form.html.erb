@@ -1,23 +1,23 @@
 <!-- フォローボタン -->
 	<div class="follower">
-        <%= link_to followers_user_path(@user.id) do %>
-          <h4 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
+        <%= link_to followers_user_path(user.id) do %>
+          <h4 style="color: black;">フォロワー<%= user.followers.count %>人</h5>
         <% end %>
       </div>
       <div class="follow">
-        <%= link_to following_user_path(@user.id) do %>
-          <h4 style="color: black;">フォロー<%= @user.following.count %>人</h5>
+        <%= link_to following_user_path(user.id) do %>
+          <h4 style="color: black;">フォロー<%= user.following.count %>人</h5>
         <% end %>
       </div>
-<% if @user != current_user%>
+<% if user != current_user%>
 
-    <% if current_user.following?(@user) %>
-      <%= form_for(current_user, url: relationship_path(@user), method: :delete, remote: true) do |f| %>
+    <% if current_user.following?(user) %>
+      <%= form_for(current_user, url: relationship_path(user), method: :delete, remote: true) do |f| %>
         <%= f.submit "フォロー解除", class: "btn btn-outline-secondary" %>
       <% end %>
     <% else %>
 	  <%= form_for(current_user, url: relationships_path, method: :post, remote: true) do |f| %>
-        <%= hidden_field_tag :following_id, @user.id %>
+        <%= hidden_field_tag :following_id, user.id %>
         <%= f.submit "フォローする", class: "btn btn-outline-secondary" %>
       <% end %>
     <% end %>

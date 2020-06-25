@@ -41,3 +41,4 @@ class User < ApplicationRecord
     self.books.exists?(post_id: post.id)
   end
 end
+

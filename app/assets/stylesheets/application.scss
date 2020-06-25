@@ -82,7 +82,7 @@ footer {
 
 body {
   /* 画像ファイルの指定 */
-  background-image: url(1230287_m.jpg);
+  background-image: image-url("1230287_m.jpg");
 
   /* 画像を常に天地左右の中央に配置 */
   background-position: center center;
@@ -188,7 +188,7 @@ h2 {
  display: flex;
  justify-content: center;
  align-items: center;
- background-image: url(3143953_m.jpg);
+ background-image: image-url("3143953_m.jpg");
  background-size: cover;
  background-attachment: fixed;
  margin-bottom: 120px;
@@ -340,4 +340,16 @@ h2 {
   overflow: hidden;
   animation: typing 2.3s steps(25, end), /* # of steps = # of chars */
              blink-caret .5s step-end infinite alternate;
+}
+
+.home1 {
+  background-image: image-url("workout-fitness-center.jpg");
+}
+
+.home2 {
+  background-image: image-url("exercise-free-weights.jpg");
+}
+
+.home3 {
+  background-image: image-url("weights-from-five-twenty-five.jpg");
 }

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row"id="post_index">
   <div class="col-lg-6">
 
     <div class="main-profile">
@@ -13,8 +13,8 @@
             <strong><%= @user.name %></strong>
           </h3>
           <!-- フォロー機能 -->
-          <div id="follow_form" style="margin: 40px 0;">
-              <%= render "follow_form" %>
+          <div id="follow_form_<%= @user.id%>" style="margin: 40px 0;">
+              <%= render "follow_form",user: @user %>
           </div>
         </div>
         <div class="row">
