@@ -25,10 +25,10 @@
       <div style="text-align: center;">
         <div class="wrapper image_box">
           <div style="width: 300px; margin-right: 10px">
-            <div style="margin-bottom: 15px; text-align: center">
-              <%= attachment_image_tag @post, :profile_image, :limit, 300, 300, fallback: "no-image.png",size: "200x200",id:"prev_img" %>
+            <div style="margin: 40px; text-align: center">
+              <%= attachment_image_tag @user, :profile_image, :limit, 300, 300, fallback: "no-image.png",id:"prev_img", :style=>"width:300px;" %>
             </div>
-            <label for="post_img" class= "btn btn-primary btn-block label-img" style="width: auto; margin: 20px 0">
+            <label for="post_img" class= "bottom" style="width: auto; margin: 20px 0;font-size: 20px; padding: 5px;">
               <%= f.attachment_field :profile_image,id: :post_img, class: "hidden" %>
               プロフィール画像の選択
             </label>

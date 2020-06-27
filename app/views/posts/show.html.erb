@@ -9,7 +9,7 @@
     </strong>
   </div>
 
-  <div class="col-lg-6">
+  <div class="col-lg-6" style="margin-bottom: 50px;">
     <h2 style="background-color: rgba(0,0,0,0.3);">トレーニング内容</h2>
     <h4 style="padding:10px;min-height: 300px;">
       <%= simple_format(@post.body) %>
@@ -40,8 +40,15 @@
     <% else %>
       <%= button_to 'ブックマーク', post_books_path(@post) %>
     <% end %>
-  </div>
 
+    <div style="margin-top: 20px;">
+      <% if @post.user.id == current_user.id %>
+      <%= link_to("編集",edit_post_path(@post.id), class: "bottom", :style=>"text-decoration:none") %>
+      <%= link_to "削除", post_path, method: :delete, class: "bottom", :style=>"text-decoration:none", data: { confirm: "削除してよろしいですか？" } %>
+      <% end %>
+      <%= link_to("投稿一覧へ",posts_path, class: "bottom", :style=>"text-decoration:none") %>
+    </div>
+  </div>
 
   <div class="col-lg-6">
     <h2 style="background-color: rgba(0,0,0,0.3);">参考画像</h2>
@@ -52,7 +59,7 @@
     </div>
   </div>
 
-  <div class="row" style="margin-top: 500px;">
+  <div class="row" style="margin-top: 600px;">
     <div class="col-xs-12">
       <div>
         <h3>
@@ -64,21 +71,16 @@
       </div>
       <br>
       <% if user_signed_in? %>
-        <div class="comment-create">
-          <h3 class="text-left">コメントを投稿する</h3>
+        <div class="comment-create" style="margin-bottom: 60px;">
+          <h3 class="text-left">
+            <strong>コメントを投稿する</strong>
+          </h3>
           <%= render partial: 'post_comments/form', locals: { post_comment: @post_comment, post: @post } %>
         </div>
       <% end %>
     </div>
   </div>
 
-  <div style="margin: 20px;">
-    <% if @post.user.id == current_user.id %>
-    <%= link_to("編集",edit_post_path(@post.id), class: "bottom", :style=>"text-decoration:none") %>
-    <%= link_to "削除", post_path, method: :delete, class: "bottom", :style=>"text-decoration:none", data: { confirm: "削除してよろしいですか？" } %>
-    <% end %>
-    <%= link_to("投降一覧へ",posts_path, class: "bottom", :style=>"text-decoration:none") %>
-  </div>
   <div class="org_to_top">
     <a href="#top">
       <div class="m_to_top">

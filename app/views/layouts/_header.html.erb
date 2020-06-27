@@ -9,10 +9,10 @@
   <% if user_signed_in? %>
     <%= link_to ' マイページ',user_path(current_user), :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
     <%= link_to ' 投稿する',new_post_path(@post), :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
-    <%= link_to "投降一覧", posts_path, :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
+    <%= link_to "投稿一覧", posts_path, :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
   <% else %>
-    <%= link_to "投降一覧", posts_path, :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
+    <%= link_to "投稿一覧", posts_path, :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
     <%= link_to "新規登録", new_user_registration_path, data: {"turbolinks" => false}, :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
     <%= link_to "ログイン", new_user_session_path, :style=>"text-decoration: none;text-shadow: 2px 2px 2px rgba(20, 20, 20, 0.5);", class: "bottom" %>
   <% end %>
