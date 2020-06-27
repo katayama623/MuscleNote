@@ -1,0 +1,63 @@
+<div class="row"id="post_index">
+  <div class="col-lg-6">
+
+    <div class="main-profile">
+      <div class="row">
+        <div class="col-xs-6">
+          <div style="margin-left: 45px;">
+            <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, fallback: "no-image.png",size: "200x200", class: "img3") %>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <h3>
+            <strong><%= @user.name %></strong>
+          </h3>
+          <!-- フォロー機能 -->
+          <div id="follow_form_<%= @user.id%>" style="margin: 40px 0;">
+              <%= render "follow_form", user: @user %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h4 style="text-align: center; margin-top: 30px;">
+                <strong style="border-bottom: solid 2px;">プロフィール</strong>
+            </h4>
+            <h5 style="padding: 8px;">
+              <strong>
+              <%= @user.introduction %>
+            </strong>
+            </h5>
+
+            <% if @user.id == current_user.id %>
+              <h4 style="text-align: center;margin-top: 30px;">
+                <%= link_to 'プロフィール編集',edit_user_path(@user), :style=>"text-decoration: none;", class: "bottom edit_user_#{@user.id} " %>
+              </h4>
+              <h4 style="text-align: center">
+                <%= link_to 'ブックマーク一覧', users_bookmark_path(@user), :style=>"text-decoration: none;", class: "bottom" %>
+              </h4>
+              <h4 style="text-align: center;">
+                <%= link_to 'トレーニングを投稿する', new_post_path(@post), :style=>"text-decoration: none;", class: "bottom" %>
+              </h4>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+  	<h2 style="margin-top: 40px;">フォロワー</h2>
+	  <% @user.followers.each do |user| %>
+    <div class="row" style="background: rgba(255,255,255,0.6);padding:5px;margin:5px;">
+      <div class="col-xs-5">
+        <%= attachment_image_tag(user, :profile_image, :fill, 200, 200, fallback: "no-image.png",size: "200x200", class: "img") %>
+        <%= link_to(user.name,"/users/#{user.id}") %>
+      </div>
+      <div class="col-xs-7">
+        <div id="follow_form_<%= user.id%>"><%= render "follow_form", user: user %></div>
+      </div>
+    </div>
+	<% end %>
+	</div>
+
+</div>

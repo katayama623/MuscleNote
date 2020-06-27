@@ -1,0 +1,143 @@
+<div id="top"></div>
+<div class="row" id="post_index">
+
+  <!-- 検索フォーム -->
+  <%= render 'posts/search_form' %>
+
+  <div class="col-lg-6">
+
+    <!-- 投降一覧 -->
+    <h2>強度で検索：強め</h2>
+    <strong>
+  	  <% @posts.each do |post| %>
+      <% if post.strong == 'strong2' %>
+  	    <%= render 'posts/post_index', post: post %>
+      <% end %>
+  	  <% end %>
+      <div style="margin-bottom: 100px;">
+        <%= paginate @posts %>
+      </div>
+    </strong>
+  </div>
+
+
+  <div class="col-lg-6">
+
+    <!-- 人気投稿 -->
+    <h2 style="text-align: center">人気投稿</h2>
+    <strong>
+      <% @all_ranks.each do |post| %>
+        <%= render 'posts/post_index', post: post %>
+      <% end %>
+    </strong>
+
+
+    <!-- タグ一覧 -->
+    <h2 class="side">タグで検索</h2>
+    <h3 style="padding: 15px; background: rgba(200,240,255,0.3);">
+      <div style="margin: 5px 3px;">
+        <% @tags.each do |tag| %>
+          <%= link_to posts_path(tag_name: tag.name), style:"text-decoration: none;" do %>
+            <%= tag %>
+          <% end %>
+        <% end %>
+      </div>
+    </h3>
+
+    <div class="row">
+
+      <!-- 効果部位一覧 -->
+      <div class="col-xs-6">
+        <h2 class="side">効果部位で検索</h2>
+        <h3 style="padding: 15px; background: rgba(200,240,255,0.3);">
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part0_path, :style=>"text-decoration:none;" do %>
+            胸
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part1_path, :style=>"text-decoration:none;" do %>
+            背中
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part2_path, :style=>"text-decoration:none;" do %>
+            肩
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part3_path, :style=>"text-decoration:none;" do %>
+            腕
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part4_path, :style=>"text-decoration:none;" do %>
+            腹筋
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part5_path, :style=>"text-decoration:none;" do %>
+            太腿
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part6_path, :style=>"text-decoration:none;" do %>
+            上半身全体
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part7_path, :style=>"text-decoration:none;" do %>
+            下半身全体
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_part8_path, :style=>"text-decoration:none;" do %>
+            その他
+            <% end %>
+          </div>
+        </h3>
+        <h2 style="text-align: center" style="margin-top: 20px;">公式ツイッター</h2>
+        <a class="twitter-timeline" href="https://twitter.com/note_muscle?ref_src=twsrc%5Etfw">Tweets by note_muscle</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+
+      <!-- 強度一覧 -->
+      <div class="col-xs-6">
+        <h2 class="side">強度で検索</h2>
+        <h3 style="padding: 15px; background: rgba(200,240,255,0.3);">
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_strong0_path, :style=>"text-decoration:none;" do %>
+            軽め
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            <%= link_to posts_strong1_path, :style=>"text-decoration:none;" do %>
+            普通
+            <% end %>
+          </div>
+
+          <div style="margin: 5px 3px;">
+            強め
+          </div>
+      </div>
+    </div>
+    <div class="org_to_top">
+    <a href="#top">
+      <div class="m_to_top">
+      ↑
+      </div>
+    </a>
+  </div>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,94 @@
+<div id="top"></div>
+<div class="row clearfix" id="post_index">
+  <h1><%= @post.title %></h1>
+
+  <div class="clearfix">
+    <strong>
+      <h3 style="margin-left: 30px;"><%= attachment_image_tag(@post.user, :profile_image, :fill, 80, 80, fallback: "no-image.png",size: "80x80", class: "img2") %>&emsp;
+        <%= link_to(@post.user.name,"/users/#{@post.user.id}", :style=>"text-decoration:none") %></h3>
+    </strong>
+  </div>
+
+  <div class="col-lg-6" style="margin-bottom: 50px;">
+    <h2 style="background-color: rgba(0,0,0,0.3);">トレーニング内容</h2>
+    <h4 style="padding:10px;min-height: 300px;">
+      <%= simple_format(@post.body) %>
+    </h4>
+    <h3>
+      <strong>効果部位：<%= @post.part_i18n %> &emsp; &emsp;強度：<%= @post.strong_i18n %></strong>
+    </h3>
+
+    <h3>
+      <strong><%= render 'posts/tag_list', tag_list: @post.tag_list %></strong>
+    </h3>
+    <br>
+
+    <h4>
+    <% if @post.favorited_by?(current_user) %>
+      <%= link_to post_favorites_path(@post, redirect_id: 0), method: :delete do %>
+        <span class="glyphicon glyphicon-heart">いいね　<%= @post.favorites.count%></span>
+      <% end %>
+      <% else %>
+      <%= link_to post_favorites_path(@post, redirect_id: 0), method: :post do %>
+        <span class="glyphicon glyphicon-heart-empty">いいね　<%= @post.favorites.count %></span>
+      <% end %>
+    <% end %>
+    </h4>
+
+    <% if current_user.already_booked?(@post) %>
+      <%= button_to 'ブックマークを取り消す', post_books_path(@post), method: :delete %>
+    <% else %>
+      <%= button_to 'ブックマーク', post_books_path(@post) %>
+    <% end %>
+
+    <div style="margin-top: 20px;">
+      <% if @post.user.id == current_user.id %>
+      <%= link_to("編集",edit_post_path(@post.id), class: "bottom", :style=>"text-decoration:none") %>
+      <%= link_to "削除", post_path, method: :delete, class: "bottom", :style=>"text-decoration:none", data: { confirm: "削除してよろしいですか？" } %>
+      <% end %>
+      <%= link_to("投稿一覧へ",posts_path, class: "bottom", :style=>"text-decoration:none") %>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <h2 style="background-color: rgba(0,0,0,0.3);">参考画像</h2>
+    <div style="text-align: center;">
+    <% @post.post_images.each do |post_image| %>
+      <%= attachment_image_tag post_image, :image, :style=>"width:400px;margin:40px;text-align:center;" %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 600px;">
+    <div class="col-xs-12">
+      <div>
+        <h3>
+          <strong>コメント</strong>
+        </h3>
+      </div>
+      <div id="comments_area">
+        <%= render partial: 'post_comments/index', locals: { post_comments: @post_comments } %>
+      </div>
+      <br>
+      <% if user_signed_in? %>
+        <div class="comment-create" style="margin-bottom: 60px;">
+          <h3 class="text-left">
+            <strong>コメントを投稿する</strong>
+          </h3>
+          <%= render partial: 'post_comments/form', locals: { post_comment: @post_comment, post: @post } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="org_to_top">
+    <a href="#top">
+      <div class="m_to_top">
+      ↑
+      </div>
+    </a>
+  </div>
+
+</div>
+
+

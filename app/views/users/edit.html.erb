@@ -1,0 +1,59 @@
+<div class="row"id="post_index">
+  <div style="width: 95%; margin-left: 10px">
+  <div>
+    <h2 class="text-center">
+      <strong>プロフィール編集</strong>
+    </h2>
+
+    <%= form_for(@user) do |f| %>
+      <div class="form_group">
+        <br>
+        <h4>
+            <strong>ユーザー名</strong>
+        </h4>
+        <%= f.text_field :name, placeholder: "ユーザー名を入力してください", class: "form-control" %>
+      </div><br>
+
+      <div class="form-group" >
+        <br>
+        <h4>
+            <strong>プロフィール</strong>
+        </h4>
+        <%= f.text_area :introduction, placeholder: "プロフィールを入力してください", rows: 7, class: "form-control" %>
+      </div>
+
+      <div style="text-align: center;">
+        <div class="wrapper image_box">
+          <div style="width: 300px; margin-right: 10px">
+            <div style="margin: 40px; text-align: center">
+              <%= attachment_image_tag @user, :profile_image, :limit, 300, 300, fallback: "no-image.png",id:"prev_img", :style=>"width:300px;" %>
+            </div>
+            <label for="post_img" class= "bottom" style="width: auto; margin: 20px 0;font-size: 20px; padding: 5px;">
+              <%= f.attachment_field :profile_image,id: :post_img, class: "hidden" %>
+              プロフィール画像の選択
+            </label>
+          </div>
+        </div>
+
+        <h2 class="text-center" style="margin-top: 80px;">
+          <strong>アカウント情報</strong>
+        </h2>
+
+        <h3 class="wrapper2">
+          <strong>メールアドレス</strong>
+        </h3>
+
+        <div class="wrapper">
+          <%= f.text_field :email, placeholder: "ユーザー名を入力してください", class: "form-control" %>
+        </div>
+
+        <div style="margin: 100px 0;">
+          <%= f.submit "更新する" %>
+        </div>
+
+    <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

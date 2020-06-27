@@ -1,0 +1,7 @@
+<div style="width: 80%;margin: 20px 0 30px 20px;">
+  <h3>トレーニングを検索する</h3>
+  <%= form_tag(posts_search_path,:method => 'get') do %>
+    <%= text_field_tag :search, '',placeholder: "トレーニング名を入力してください" %>
+    <%= submit_tag '検索する', :title => nil, class:"button5" %>
+  <% end %>
+</div>
