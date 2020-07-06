@@ -90,3 +90,6 @@ end
 gem 'carrierwave'
 
 gem 'streamio-ffmpeg'
+
+gem 'fog-aws'
+
