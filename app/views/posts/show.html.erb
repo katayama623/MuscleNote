@@ -61,6 +61,12 @@
     <p>
       <%= video_tag @post.video, :controls => true, :loop => true, :style=>"width:100%;" %>
     </p>
+    <h4>
+      動画が再生されない場合は
+      <%= link_to @post.video_url.to_s do %>
+        こちらから
+      <% end %>
+    </h4>
     <% end %>
     <% unless @post.video.present? %>
     <h2 style="background-color: rgba(0,0,0,0.3);">参考画像</h2>
