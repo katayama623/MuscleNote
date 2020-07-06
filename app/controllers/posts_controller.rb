@@ -45,10 +45,14 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
-      redirect_to @post
-    else
-      render 'edit'
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to @post, notice: 'Article was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -229,7 +233,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :body, :strong, :part, :start_image, :finish_image, :tag_list, post_images_images: [])
+      params.require(:post).permit(:title, :body, :strong, :part, :start_image, :finish_image, :video, :tag_list, post_images_images: [])
     end
 
     def screen_user(post)
