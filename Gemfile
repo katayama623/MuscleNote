@@ -86,3 +86,7 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+gem 'carrierwave'
+
+gem 'streamio-ffmpeg'

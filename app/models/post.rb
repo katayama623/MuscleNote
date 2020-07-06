@@ -24,6 +24,9 @@ class Post < ApplicationRecord
   # タグ付
   acts_as_taggable
 
+  # 動画投稿機能
+  mount_uploader :video, VideoUploader
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
